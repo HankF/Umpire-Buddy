@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/strike_text"
+        android:id="@+id/strikeText"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:textSize="40sp"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/strikeCount"
+        android:layout_row="1"
+        android:layout_column="3"
+        android:textSize="40sp"
+        android:text="@string/strikeCount_text"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/ball_text"
+        android:id="@+id/ballText"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:textSize="40sp"
+        android:textAlignment="textEnd" />
+
+    <Space
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:id="@+id/topLeft" />
+
+    <TextView
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/ballCount"
+        android:layout_row="2"
+        android:layout_column="3"
+        android:textSize="40sp"
+        android:text="@string/ballCount_text"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:text="@string/strike_button_label"
+        android:id="@+id/strikeButton"
+        android:layout_row="4"
+        android:layout_column="5"
+        android:textSize="35sp" />
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="35dp"
+        android:layout_row="6"
+        android:layout_column="5" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:text="@string/ball_button_label"
+        android:id="@+id/ballButton"
+        android:layout_row="5"
+        android:layout_column="5"
+        android:textSize="35sp"
+        />
+
+
+</GridLayout>

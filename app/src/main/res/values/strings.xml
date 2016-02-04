@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Umpire Buddy</string>
+
+    <string name="strike_text">Strike:</string>
+    <string name="strike_button_label">Strike</string>
+    <string name="strikeCount_text">0</string>
+    <string name="strikeout">Strikeout!</string>
+
+    <string name="ball_text">Ball:</string>
+    <string name="ball_button_label">Ball</string>
+    <string name="ballCount_text">0</string>
+    <string name="Walk">Walk!</string>
+
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="OK">OK</string>
+
+    <string name="NewBatterPrompt"> New Batter?</string>
+
+</resources>
