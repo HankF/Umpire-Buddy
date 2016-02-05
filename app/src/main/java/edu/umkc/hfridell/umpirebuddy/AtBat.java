@@ -1,6 +1,9 @@
 package edu.umkc.hfridell.umpirebuddy;
 
-public class AtBat {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class AtBat implements Parcelable {
 
     protected int strikeCount;
     protected int ballCount;
@@ -27,8 +30,31 @@ public class AtBat {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(strikeCount);
+        dest.writeInt(ballCount);
+    }
 
+    public static final Parcelable.Creator<AtBat> CREATOR
+            = new Parcelable.Creator<AtBat>(){
+        public AtBat createFromParcel(Parcel in){
+            return new AtBat(in);
+        }
 
+        @Override
+        public AtBat[] newArray(int size) {
+            return new AtBat[size];
+        }
+    };
 
+    private AtBat(Parcel in){
+        strikeCount = in.readInt();
+        ballCount = in.readInt();
+    }
 }

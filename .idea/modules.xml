@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UmpireBuddy.iml" filepath="$PROJECT_DIR$/UmpireBuddy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Umpire-Buddy.iml" filepath="$PROJECT_DIR$/Umpire-Buddy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

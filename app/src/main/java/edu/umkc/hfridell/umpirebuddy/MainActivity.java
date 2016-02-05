@@ -79,11 +79,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         Log.i(TAG, "Starting onCreate...");
         setContentView(R.layout.activity_main);
 
+        //Restore state
+        if (savedInstanceState != null){
+            currentBatter = savedInstanceState.getParcelable("savedBatter");
+        }
+        else {
+            currentBatter = new AtBat();
+        }
+
         // Setup contextual action mode menu (CAB)
         // Long clicking background of main activity will
         // bring up a contextual menu.
         GridLayout layout = (GridLayout)findViewById(R.id.grid_layout);
-        layout.setOnLongClickListener(new View.OnLongClickListener(){
+        layout.setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View view) {
                 // mActionMode is set back to null
                 //    above when the context menu disappears.
@@ -104,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         View ballButton = findViewById(R.id.ballButton);
         ballButton.setOnClickListener(this);
 
-        currentBatter = new AtBat();
 
         updateDisplay();
     }
@@ -198,5 +205,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+
+        Log.i(TAG, "onSaveInstanceState()");
+        icicle.putParcelable("savedBatter", currentBatter);
     }
 }
