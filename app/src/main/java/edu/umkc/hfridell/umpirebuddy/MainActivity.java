@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -16,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     public final static String EXTRA_DATA = "Thank you for using Umpire Buddy";
     static final private String TAG = "Umpire Buddy";
 
+    private SharedPreferences mPrefs;
+
     AtBat currentBatter;
+    private int totalOuts;
 
     // Contextual action mode menu
     private ActionMode mActionMode;
@@ -49,14 +54,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.contextStrike:
-                    currentBatter.strike();
-                    updateDisplay();
+                    strikeButtonAction();
 
                     mode.finish(); // closes contextual actionBar
                     return true;
                 case R.id.contextBall:
-                    currentBatter.ball();
-                    updateDisplay();
+                    ballButtonAction();
 
                     mode.finish();
                     return true;
@@ -79,13 +82,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         Log.i(TAG, "Starting onCreate...");
         setContentView(R.layout.activity_main);
 
+
         //Restore state
-        if (savedInstanceState != null){
-            currentBatter = savedInstanceState.getParcelable("savedBatter");
-        }
-        else {
-            currentBatter = new AtBat();
-        }
+        mPrefs = getPreferences(MODE_PRIVATE);
+        totalOuts = mPrefs.getInt("totalOuts", 0);
+        currentBatter = new AtBat(mPrefs.getInt("strikeCount", 0)
+                , mPrefs.getInt("ballCount", 0));
+
 
         // Setup contextual action mode menu (CAB)
         // Long clicking background of main activity will
@@ -122,6 +125,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         TextView strikeCount = (TextView)findViewById(R.id.strikeCount);
         strikeCount.setText(Integer.toString(currentBatter.getStrikeCount()));
+
+        TextView outs = (TextView)findViewById(R.id.outs_number);
+        outs.setText(Integer.toString(totalOuts));
     }
 
     @Override
@@ -151,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 currentBatter = new AtBat();
+                totalOuts += 1;
                 updateDisplay();
             }
         });
@@ -193,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         switch (item.getItemId()) {
             case R.id.reset:
                 currentBatter = new AtBat();
+                totalOuts = 0;
                 updateDisplay();
                 return true;
 
@@ -207,11 +215,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle icicle) {
-        super.onSaveInstanceState(icicle);
 
-        Log.i(TAG, "onSaveInstanceState()");
-        icicle.putParcelable("savedBatter", currentBatter);
+    protected void onPause() {
+        super.onPause();
+
+
+
+        SharedPreferences.Editor ed = mPrefs.edit();
+        ed.putInt("totalOuts", totalOuts);
+        ed.putInt("strikeCount", currentBatter.getStrikeCount());
+        ed.putInt("ballCount", currentBatter.getBallCount());
+        ed.apply();
     }
+
 }
+
+

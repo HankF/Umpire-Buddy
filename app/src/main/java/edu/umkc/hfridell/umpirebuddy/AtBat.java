@@ -13,6 +13,11 @@ public class AtBat implements Parcelable {
         ballCount = 0;
     }
 
+    AtBat(int strikeCount, int ballCount){
+        this.strikeCount = strikeCount;
+        this.ballCount = ballCount;
+    }
+
     public int getStrikeCount() {
         return strikeCount;
     }

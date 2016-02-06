@@ -17,6 +17,10 @@
     <string name="ballCount_text">0</string>
     <string name="Walk">Walk!</string>
 
+    <string name="outs">Outs:</string>
+    <string name="outs_number">0</string>
+
+
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="OK">OK</string>

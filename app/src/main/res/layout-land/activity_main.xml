@@ -40,7 +40,7 @@
         android:layout_column="1"
         android:textSize="40sp"
         android:textAlignment="textEnd"
-        android:paddingBottom="40dp" />
+        android:paddingBottom="10dp" />
 
     <Space
         android:layout_width="15dp"
@@ -91,7 +91,7 @@
         android:text="@string/strike_button_label"
         android:id="@+id/strikeButton"
         android:layout_row="5"
-        android:layout_column="5"
+        android:layout_column="3"
         android:textSize="35sp" />
 
     <Space
@@ -106,7 +106,7 @@
         android:layout_height="100dp"
         android:text="@string/ball_button_label"
         android:id="@+id/ballButton"
-        android:layout_row="6"
+        android:layout_row="5"
         android:layout_column="5"
         android:textSize="35sp"
         />
